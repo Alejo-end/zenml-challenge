@@ -1,12 +1,12 @@
 import './App.css'
-import StackList from './components/StackList'
+import Layout from './components/Layout'
 
 function App() {  
 
   return (
     <>
       <h1>ZenML Challengue</h1>
-      <StackList/>
+      <Layout />
       <p className="read-the-docs">
         <a href='/README.md'>Check the Readme here...</a>
       </p>
