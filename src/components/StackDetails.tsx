@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useStackByIdQuery } from '../hooks/useStackByIdQuery';
 import { useComponentsQuery } from '../hooks/useComponentsQuery';
 import ComponentConfiguration from './ComponentsConfiguration';
@@ -11,11 +11,11 @@ interface StackDetailsProps {
     goBack: () => void;
 }
 
-const StackDetails: React.FC<StackDetailsProps> = ({ stackId, goBack }) => {
+const StackDetails = ({ stackId, goBack }: StackDetailsProps) => {
     const { data: stack, isLoading: isStackLoading, isError: isStackError, error: stackError } = useStackByIdQuery(stackId);
     const { data: components, isLoading: isComponentsLoading, isError: isComponentsError, error: componentsError } = useComponentsQuery();
 
-    const [selectedComponentId, setSelectedComponentId] = useState<string>("");
+    const [selectedComponentId, setSelectedComponentId] = useState<string | null>(null);
 
     if (isStackLoading || isComponentsLoading) return <p className="text-center text-gray-600">Loading stack details...</p>;
     if (isStackError) return <p className="text-center text-red-600">Error loading stack: {stackError.message}</p>;
@@ -43,17 +43,17 @@ const StackDetails: React.FC<StackDetailsProps> = ({ stackId, goBack }) => {
                 </h2>
                 {Object.entries(filteredComponentsByType).map(([type, components]) => (
                     <div key={type} className="border border-gray-200 rounded-lg p-4 mb-4 shadow-sm">
-                        <h3 className="text-xl font-semibold text-gray-800">Component Type: {type}</h3>
+                        <h3 className="text-xl font-semibold text-gray-800">{type}</h3>
                         <div className="mt-2 ">
                             {components.map((component) => (
-                                <div key={component.id} className=" justify-between items-center p-2 bg-gray-50 rounded-md space-y-4">
-                                    <p className="text-gray-600">flavor: {component.name}</p>
+                                <div key={component.id} className=" justify-between items-center p-2 bg-gray-50 rounded-md space-y-2">
                                     <span className={`rounded-lg font-semibold my-3 text-white px-2 py-1 text-xs ${component.is_shared ? 'bg-red-500' : 'bg-yellow-500'}`}>
                                         {component.is_shared ? 'Shared' : 'Private'}
                                     </span>
-                                    <p>{component.project}</p>
+                                    <p className="text-gray-600">name: {component.name}</p>
+                                    <p className='text-purple-600'>flavor: {component.flavor}</p>
                                     <button
-                                        className="bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-500 transition-colors"
+                                        className="bg-purple-600 text-white rounded-lg hover:bg-purple-500 transition-colors"
                                         onClick={() => setSelectedComponentId(component.id)}
                                     >
                                         View Configuration
