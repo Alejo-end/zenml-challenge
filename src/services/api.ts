@@ -30,6 +30,6 @@ export const fetchComponents = async () => {
 
 // Fetches a component by its ID
 export const fetchComponentById = async (componentId: string) => {
-  const response = await api.get(`/component/${componentId}`);
+  const response = await api.get(`/component/{componentId}?stack_component_id=${componentId}`);
   return response.data;
 };

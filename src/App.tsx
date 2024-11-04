@@ -4,13 +4,9 @@ import Layout from './components/Layout'
 function App() {  
 
   return (
-    <>
-      <h1>ZenML Challengue</h1>
+    <div className='w-full overflow-x-hidden mt-5'>
       <Layout />
-      <p className="read-the-docs">
-        <a href='/README.md'>Check the Readme here...</a>
-      </p>
-    </>
+    </ div>
   )
 }
 
