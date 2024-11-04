@@ -8,7 +8,6 @@ To run this project use
 `npm i`
 `npm run dev`
 
-
 ## Questions
 
 - What is an ideal way to visualize a stack and a stack component?
@@ -19,6 +18,9 @@ To run this project use
 
 - How does one showcase the connection between a stack and its stack components?
 - A/. I would use some visual aids to help the user navigate between the stacks and recognize familiar components (i.e. orchestators have an green border and name, while an artifact store as an orange border and name). also on a hierachical view with many components some lines or containers can help with segmentation of which components belong to which stack (this way also we can represent shared stack components being tied to multiple stacks for example.).
+
+
+### Total Time Estimate: 4.5h
 
 - In your role as the frontend developer, how can you construct a UI that's prepared for the future? For instance, if the API were to incorporate extra functionalities in the future, such as creating stacks and stack components, how much adjustment would the UI demand to seamlessly embrace these potential new features?
 - A/. I believe that a UI prepared for the future depends on multiple of factors. but for this specific case it could be relatively simple to add a button on top of the stacks and components columns that when is pressed opens a modal that provides with some inputs to gather data to send to the Create endpoint in either case. we could add a function that checks if new data is present and update the view when a new object is added.
